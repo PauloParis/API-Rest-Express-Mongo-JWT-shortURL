@@ -8,7 +8,7 @@ const app = express(); //en la app activamos todos los metodos de express
                       // por ejemplo para inicializar el servidor
 
 app.use(express.json()) //habilitamos express para que pueda leer las solicitudes en json
-app.use('/api/v1', authRouter)
+app.use('/api/v1/auth', authRouter)
 
 const PORT = process.env.PORT || 5000
 

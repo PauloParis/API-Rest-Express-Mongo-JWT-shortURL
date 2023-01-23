@@ -1,9 +1,9 @@
-import express from "express";
+import express from "express"; // ó import {Router} from "express";
 import { login, register } from "../controllers/auth.controller.js";
 import {body} from 'express-validator'
 import { validatorResultExpress } from "../middlewares/validatorResultExpress.js";
 
-const router = express.Router();
+const router = express.Router(); // ó const router = Router();
 
 router.post('/login', 
     [
