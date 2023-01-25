@@ -2,6 +2,7 @@ import express from "express";
 import './database/connectdb.js';
 import 'dotenv/config'; //se puede poner en el coonectdb.js
 import authRouter from './routes/auth.route.js';
+import linkRouter from './routes/link.route.js'
 import cookieParser from "cookie-parser";
 
 const app = express(); //en la app activamos todos los metodos de express
@@ -10,6 +11,7 @@ const app = express(); //en la app activamos todos los metodos de express
 app.use(express.json()) //habilitamos express para que pueda leer las solicitudes en json
 app.use(cookieParser()) //se le dice a express q se trabajará con cookies
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/links', linkRouter)
 
 const PORT = process.env.PORT || 5000
 

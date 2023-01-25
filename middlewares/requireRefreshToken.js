@@ -11,9 +11,9 @@ export const requireRefreshToken = (req, res, next) => {
 
          const {uid} = Jwt.verify(refreshTokenCockie, process.env.JWT_REFRESH);
          req.uid = uid;
-         const {token, expiresIn} = generateToken(uid);
-         return res.json({token, expiresIn});
-         //next();
+         //const {token, expiresIn} = generateToken(uid);
+         //return res.json({token, expiresIn});
+         next();
 
     } catch (error) {
         console.log(error.message);
