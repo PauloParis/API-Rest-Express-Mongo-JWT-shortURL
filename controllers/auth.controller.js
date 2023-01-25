@@ -1,5 +1,6 @@
 import { User } from "../models/User.js" 
 import jwt from "jsonwebtoken"
+import { generateRefreshTOken, generateToken } from "../utils/tokenManager.js"
 
 export const login = async(req, res) => {
     const {email, password} = req.body
@@ -14,10 +15,11 @@ export const login = async(req, res) => {
         }
 
         //generar jwt
-        const token = jwt.sign({uid: user.id},  process.env.JWT_SECRET) //sign({ payload })
+        //const token = jwt.sign({uid: user.id},  process.env.JWT_SECRET) //sign({ payload })
+        const {token, expiresIn} = generateToken(user.id)
+        generateRefreshTOken(user.id, res);
 
-
-        return res.json({token});
+        return res.json({token, expiresIn});
     } catch (error) {
         console.log(error)
         return res.status(500).json({error: "Error de servidor"})
@@ -46,4 +48,22 @@ export const register = async(req, res) => {
         }  
         return res.status(500).json({error: "Error de servidor"})
     }
+}
+
+export const infoUser = async(req, res) => {
+    try {
+        const user = await User.findById(req.uid).lean(); //lean para consultas mas rapidas
+
+        return res.json({uid: user.id,  email: user.email});
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Error de servidor"})
+    }
+}
+
+
+export const logout = (req, res) => {
+    res.clearCookie('refreshToken')
+    res.json({ok: 'logout'})
 }
