@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import * as dotenv from 'dotenv'; //se puede poner en el coonectdb.js
 dotenv.config();
 
+mongoose.set("strictQuery", true);
 try {
     await mongoose.connect(process.env.URI_MONGO); //no es encesario un async
     console.log('---Connect DB ok---')
