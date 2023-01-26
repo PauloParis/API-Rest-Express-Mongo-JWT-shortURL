@@ -52,7 +52,7 @@ export const bodyLinkValidator = [
         .custom(async (value) => {
             try {
 
-                if(value.startWith('http://')){ //para ver si comienza con https
+                if(!value.startsWith('https://')){ //para ver si comienza con https
                     value = 'https://' + value
                 }
                 
