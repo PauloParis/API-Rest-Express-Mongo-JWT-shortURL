@@ -16,7 +16,7 @@ export const generateRefreshTOken = (uid, res) => {
         const refreshToken = Jwt.sign({uid}, process.env.JWT_REFRESH, {expiresIn: expiresIn})
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: !(process.env.MODO === 'developer'),
+            secure: true/* !(process.env.MODO === "developer") */,
             expires: new Date(Date.now() + expiresIn * 1000),
             sameSite: 'none'
         })        
