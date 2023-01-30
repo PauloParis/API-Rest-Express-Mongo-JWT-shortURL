@@ -9,7 +9,8 @@ export const corsConfiguration = cors({
             return callback(null, origin);
         }
         return callback("Error de Cors: " + origin + " No autorizado!")
-    }
+    },
+    credentials: true
 })
 
 //No es correcto, entra al controlador
