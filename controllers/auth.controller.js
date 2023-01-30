@@ -1,5 +1,5 @@
 import { User } from "../models/User.js" 
-import { generateRefreshTOken, generateToken } from "../utils/tokenManager.js"
+import { generateRefreshToken, generateToken } from "../utils/tokenManager.js"
 
 export const login = async(req, res) => {
     const {email, password} = req.body
@@ -16,7 +16,7 @@ export const login = async(req, res) => {
         //generar jwt
         //const token = jwt.sign({uid: user.id},  process.env.JWT_SECRET) //sign({ payload })
         const {token, expiresIn} = generateToken(user.id)
-        generateRefreshTOken(user.id, res);
+        generateRefreshToken(user.id, res);
 
         return res.json({token, expiresIn});
     } catch (error) {
