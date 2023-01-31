@@ -3,7 +3,8 @@ import { generateToken, tokenVerificationErrors } from "../utils/tokenManager.js
 
 export const requireRefreshToken = (req, res, next) => {
     try {
-        const refreshTokenCockie = req.cookies.refreshToken
+        console.log("req.cookies.refresh: ", req.cookies.refreshToken)
+        const refreshTokenCockie = req.cookies.refreshToken;
 
         if(!refreshTokenCockie) {
             throw new Error ('No existe el token r')
