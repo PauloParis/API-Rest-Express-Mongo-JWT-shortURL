@@ -14,7 +14,7 @@ export const generateRefreshToken = (uid, res) => {
     const expiresIn = 60 * 60 *24 *30 //30 dias
     try {
         const refreshToken = Jwt.sign({uid}, process.env.JWT_REFRESH, {expiresIn: expiresIn})
-        res.cookies("refreshToken", refreshToken, {
+        res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: !(process.env.MODO === "developer"),
             expires: new Date(Date.now() + expiresIn * 1000),
