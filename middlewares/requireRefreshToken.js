@@ -3,7 +3,7 @@ import { generateToken, tokenVerificationErrors } from "../utils/tokenManager.js
 
 export const requireRefreshToken = (req, res, next) => {
     try {
-        console.log("req.cookie.refresh: ", req.cookie.refreshToken)
+        console.log("req.cookie.refresh: ", req.cookies.refreshToken)
         const refreshTokenCockie = req.cookie.refreshToken;
 
         if(!refreshTokenCockie) {
