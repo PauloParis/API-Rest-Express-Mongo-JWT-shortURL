@@ -1,10 +1,11 @@
 import Jwt from "jsonwebtoken";
-import { generateToken, tokenVerificationErrors } from "../utils/tokenManager.js";
+import { tokenVerificationErrors } from "../utils/tokenManager.js";
 
 export const requireRefreshToken = (req, res, next) => {
     try {
+
         console.log("req.cookie.refresh: ", req.cookies.refreshToken)
-        const refreshTokenCockie = req.cookie.refreshToken;
+        const refreshTokenCockie = req.cookies.refreshToken;
 
         if(!refreshTokenCockie) {
             throw new Error ('No existe el token r')
