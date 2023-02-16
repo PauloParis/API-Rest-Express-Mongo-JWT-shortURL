@@ -38,7 +38,7 @@ export const register = async(req, res) => {
         await user.save();
 
         const {token, expiresIn} = generateToken(user.id)
-        generateRefreshTOken(user.id, res);
+        generateRefreshToken(user.id, res);
 
 
         return res.status(201).json({ token, expiresIn });
